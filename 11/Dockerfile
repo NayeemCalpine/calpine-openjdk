@@ -90,7 +90,7 @@ RUN set -eux; \
     echo "OpenJDK Download from: ${BINARY_URL}"; \
     curl -LfsSo /tmp/openjdk.tar.gz ${BINARY_URL}; \
     curl -LfsSo /tmp/openjdk.tar.gz.sha256.txt ${BINARY_URL}.sha256.txt; \
-    ESUM=`cat /tmp/openjdk.tar.gz.sha256.txt`; \
+    ESUM=`cat /tmp/openjdk.tar.gz.sha256.txt | awk '{print $1}'`; \
     echo "${ESUM} */tmp/openjdk.tar.gz" | sha256sum -c -; \
     mkdir -p /opt/java/openjdk; \
     cd /opt/java/openjdk; \

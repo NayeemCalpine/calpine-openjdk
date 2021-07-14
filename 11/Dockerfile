@@ -85,7 +85,7 @@ RUN set -eux; \
     exit 1; \
     ;; \
     esac; \
-    echo "OpenJDK version: ${JAVA_BUILD}-${JAVA_BUILD_TYPE}-${RELEASE_DATE}"; \
+    echo "Build Arch: ${BINARY_ARCH} | OpenJDK version: ${JAVA_BUILD}-${JAVA_BUILD_TYPE}-${RELEASE_DATE}"; \
     BINARY_URL="https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/${JAVA_BUILD}/OpenJDK11U-${JAVA_BUILD_TYPE}_${BINARY_ARCH}_linux_hotspot_${RELEASE_DATE}.tar.gz"; \
     echo "OpenJDK Download from: ${BINARY_URL}"; \
     curl -LfsSo /tmp/openjdk.tar.gz ${BINARY_URL}; \

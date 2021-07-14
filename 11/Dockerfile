@@ -6,6 +6,7 @@ USER root
 
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 ENV TIMEZ=Asia/Phnom_Penh
+
 RUN echo "Start building the openjdk..."
 RUN mkdir -p /src/cubetiq/build
 COPY LICENSE version.txt /src/cubetiq/build/
@@ -58,6 +59,9 @@ ENV JAVA_BUILD jdk11u-${RELEASE_DATE}
 ENV JAVA_BUILD_TYPE jdk
 
 RUN set -eux; \
+    RELEASE_DATE="echo ${RELEASE_DATE}"; \
+    JAVA_BUILD="echo ${JAVA_BUILD}"; \
+    JAVA_BUILD_TYPE="echo ${JAVA_BUILD_TYPE}"; \
     apk add --no-cache --virtual .fetch-deps curl; \
     ARCH="$(apk --print-arch)"; \
     case "${ARCH}" in \

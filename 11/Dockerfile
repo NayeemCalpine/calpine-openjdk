@@ -54,14 +54,14 @@ RUN apk add --no-cache --virtual .build-deps curl binutils zstd \
 
 # Remove unused anymore
 RUN apk del tzdata
-ENV RELEASE_DATE 2020-12-07-10-34
-ENV JAVA_BUILD jdk11u-${RELEASE_DATE}
-ENV JAVA_BUILD_TYPE jdk
+# ENV RELEASE_DATE 2020-12-07-10-34
+# ENV JAVA_BUILD jdk11u-${RELEASE_DATE}
+# ENV JAVA_BUILD_TYPE jdk
 
 RUN set -eux; \
-    RELEASE_DATE="${RELEASE_DATE}"; \
-    JAVA_BUILD="${JAVA_BUILD}"; \
-    JAVA_BUILD_TYPE="${JAVA_BUILD_TYPE}"; \
+    RELEASE_DATE="2020-12-07-10-34"; \
+    JAVA_BUILD="jdk11u-2020-12-07-10-34"; \
+    JAVA_BUILD_TYPE="jdk"; \
     apk add --no-cache --virtual .fetch-deps curl; \
     ARCH="$(apk --print-arch)"; \
     case "${ARCH}" in \

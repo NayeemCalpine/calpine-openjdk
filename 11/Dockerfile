@@ -66,25 +66,27 @@ RUN set -eux; \
     ARCH="$(apk --print-arch)"; \
     case "${ARCH}" in \
     aarch64|arm64) \
-    BINARY_URL='https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/${JAVA_BUILD}/OpenJDK11U-${JAVA_BUILD_TYPE}_aarch64_linux_hotspot_${RELEASE_DATE}.tar.gz'; \
+    BINARY_ARCH='aarch64'; \
     ;; \
     armhf|armv7l) \
-    BINARY_URL='https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/${JAVA_BUILD}/OpenJDK11U-${JAVA_BUILD_TYPE}_arm_linux_hotspot_${RELEASE_DATE}.tar.gz'; \
+    BINARY_ARCH='arm'; \
     ;; \
     ppc64el|ppc64le) \
-    BINARY_URL='https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/${JAVA_BUILD}/OpenJDK11U-${JAVA_BUILD_TYPE}_ppc64le_linux_hotspot_${RELEASE_DATE}.tar.gz'; \
+    BINARY_ARCH='ppc64le'; \
     ;; \
     s390x) \
-    BINARY_URL='https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/${JAVA_BUILD}/OpenJDK11U-${JAVA_BUILD_TYPE}_s390x_linux_hotspot_${RELEASE_DATE}.tar.gz'; \
+    BINARY_ARCH='s390x'; \
     ;; \
     amd64|x86_64) \
-    BINARY_URL='https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/${JAVA_BUILD}/OpenJDK11U-${JAVA_BUILD_TYPE}_x64_linux_hotspot_${RELEASE_DATE}.tar.gz'; \
+    BINARY_ARCH='x64'; \
     ;; \
     *) \
     echo "Unsupported arch: ${ARCH}"; \
     exit 1; \
     ;; \
     esac; \
+    echo "OpenJDK version: ${JAVA_BUILD}-${JAVA_BUILD_TYPE}-${RELEASE_DATE}"; \
+    BINARY_URL="https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/${JAVA_BUILD}/OpenJDK11U-${JAVA_BUILD_TYPE}_${BINARY_ARCH}_linux_hotspot_${RELEASE_DATE}.tar.gz"; \
     echo "OpenJDK Download from: ${BINARY_URL}"; \
     curl -LfsSo /tmp/openjdk.tar.gz ${BINARY_URL}; \
     curl -LfsSo /tmp/openjdk.tar.gz.sha256.txt ${BINARY_URL}.sha256.txt; \
